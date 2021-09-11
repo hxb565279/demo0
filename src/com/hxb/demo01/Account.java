@@ -1,11 +1,11 @@
 package com.hxb.demo01;
 
 public class Account {
-    private int id;
-    private String shouzhi;
-    private String yu_e;
-    private String jin_e;
-    private String shuoming;
+    private int id;  //id
+    private String shouzhi;  //收支
+    private String yu_e;  //余额
+    private String jin_e;//金额
+    private String shuoming;//说明
 
     @Override
     public String toString() {

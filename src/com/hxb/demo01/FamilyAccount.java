@@ -17,7 +17,9 @@ public class FamilyAccount {
                 "           4，退 出           \n ");
         System.out.print("          请选择（1-4）:");
     }
-
+    public void line() {
+        System.out.println("-----------------------------------------------");
+    }
     //遍历查询
     public void select() throws SQLException, ClassNotFoundException {
         Connection connection = null;
@@ -71,7 +73,19 @@ public class FamilyAccount {
         int yu_all = yu_e + yu_2;
         common(yu, sh, connection, sql, yu_all);
     }
-//公共方法
+
+
+
+    //支出
+    public void out(String zhi, String sh) throws SQLException, ClassNotFoundException {
+        Connection connection = jdbc.Conn();
+        PreparedStatement statement = null;
+        String sql = "insert into aling(shouzhi,yu_e,jin_e,shuoming) value ('支出',?,?,?)";
+        int yu_all_3 = Integer.parseInt(select_yu().getYu_e()) - Integer.parseInt(zhi);
+        common(zhi, sh, connection, sql, yu_all_3);
+    }
+
+    //公共方法
     private void common(String yu, String sh, Connection connection, String sql, int yu_all) throws SQLException, ClassNotFoundException {
         PreparedStatement statement;
         String yu_all_1 = Integer.toString(yu_all);
@@ -84,18 +98,6 @@ public class FamilyAccount {
         hu();
     }
 
-    //支出
-    public void out(String zhi, String sh) throws SQLException, ClassNotFoundException {
-        Connection connection = jdbc.Conn();
-        PreparedStatement statement = null;
-        String sql = "insert into aling(shouzhi,yu_e,jin_e,shuoming) value ('支出',?,?,?)";
-        int yu_all_3 = Integer.parseInt(select_yu().getYu_e()) - Integer.parseInt(zhi);
-        common(zhi, sh, connection, sql, yu_all_3);
-    }
-
-    public void line() {
-        System.out.println("-----------------------------------------------");
-    }
 
     public void check_input(int number) throws SQLException, ClassNotFoundException {
         switch (number) {

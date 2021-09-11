@@ -11,7 +11,7 @@
  Target Server Version : 50729
  File Encoding         : 65001
 
- Date: 11/09/2021 20:56:38
+ Date: 12/09/2021 06:13:01
 */
 
 SET NAMES utf8mb4;
@@ -28,15 +28,19 @@ CREATE TABLE `aling`  (
   `jin_e` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `shuoming` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of aling
 -- ----------------------------
-INSERT INTO `aling` VALUES (3, '收入', '555', '555', '44');
-INSERT INTO `aling` VALUES (4, '收入', '44', '44', '测试');
 INSERT INTO `aling` VALUES (5, '收入', '5721', '5677', '测试');
 INSERT INTO `aling` VALUES (6, '收入', '5765', '44', '测试');
 INSERT INTO `aling` VALUES (7, '支出', '5753', '12', '测试');
+INSERT INTO `aling` VALUES (8, '收入', '5775', '22', '测试');
+INSERT INTO `aling` VALUES (9, '支出', '220', '5555', '测试');
+INSERT INTO `aling` VALUES (10, '收入', '4653', '4433', '手手');
+INSERT INTO `aling` VALUES (11, '支出', '4210', '443', '吃饭');
+INSERT INTO `aling` VALUES (12, '收入', '4644', '434', '吃饭');
+INSERT INTO `aling` VALUES (13, '支出', '4210', '434', '吃饭');
 
 SET FOREIGN_KEY_CHECKS = 1;
