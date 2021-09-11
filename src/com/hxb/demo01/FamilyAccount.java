@@ -4,31 +4,6 @@ import java.sql.*;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
-class Jdbc {
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/demo01?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8";
-    static final String USER = "root";
-    static final String PASS = "123456";
-
-    public Connection Conn() throws ClassNotFoundException, SQLException {
-        Class.forName(JDBC_DRIVER);
-        return DriverManager.getConnection(DB_URL, USER, PASS);
-    }
-
-    public static void main(String[] args) {
-        Jdbc jdbc = new Jdbc();
-        try {
-            jdbc.Conn();
-            System.out.println("成功");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-
 public class FamilyAccount {
     Scanner scanner = new Scanner(System.in);
     Jdbc jdbc = new Jdbc();
@@ -51,9 +26,8 @@ public class FamilyAccount {
         connection = jdbc.Conn();
         statement = connection.createStatement();
         ResultSet rs = statement.executeQuery(sql);
-        // 展开结果集数据库
         System.out.println("---------当前收支记录明细--------------------");
-        System.out.println("-------     收支  余额  收支金额  说明  ---");
+        System.out.println("-------   收支  余额  收支金额  说明  ---");
         while (rs.next()) {
             int id = rs.getInt("id");
             String shouzhi = rs.getString("shouzhi");
@@ -95,6 +69,11 @@ public class FamilyAccount {
         int yu_e = Integer.parseInt(select_yu().getYu_e());
         int yu_2 = Integer.parseInt(yu);
         int yu_all = yu_e + yu_2;
+        common(yu, sh, connection, sql, yu_all);
+    }
+//公共方法
+    private void common(String yu, String sh, Connection connection, String sql, int yu_all) throws SQLException, ClassNotFoundException {
+        PreparedStatement statement;
         String yu_all_1 = Integer.toString(yu_all);
         statement = connection.prepareStatement(sql);
         statement.setString(1, yu_all_1);
@@ -111,14 +90,7 @@ public class FamilyAccount {
         PreparedStatement statement = null;
         String sql = "insert into aling(shouzhi,yu_e,jin_e,shuoming) value ('支出',?,?,?)";
         int yu_all_3 = Integer.parseInt(select_yu().getYu_e()) - Integer.parseInt(zhi);
-        String yu_all_2 = Integer.toString(yu_all_3);
-        statement = connection.prepareStatement(sql);
-        statement.setString(1, yu_all_2);
-        statement.setString(2, zhi);
-        statement.setString(3, sh);
-        statement.executeUpdate();
-        System.out.println("登记成功");
-        hu();
+        common(zhi, sh, connection, sql, yu_all_3);
     }
 
     public void line() {
@@ -161,8 +133,7 @@ public class FamilyAccount {
         if (pattern.matcher(n1).matches()) {
             check_number(Integer.parseInt(n1));
         } else {
-            System.out.println("错误，不是数字");
-            System.out.println("请输入1-4：");
+            System.out.println("错误，不是数字;请输入1-4：");
             String t = scanner.nextLine();
             checkString(t);
         }
@@ -187,11 +158,5 @@ public class FamilyAccount {
         familyAccount.Head();
         String n = scanner.nextLine();
         familyAccount.checkString(n);
-    }
-
-    //主函数
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        FamilyAccount familyAccount = new FamilyAccount();
-        familyAccount.hu();
     }
 }
