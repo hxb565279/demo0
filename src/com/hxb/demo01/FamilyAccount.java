@@ -53,7 +53,7 @@ public class FamilyAccount {
         ResultSet rs = statement.executeQuery(sql);
         // 展开结果集数据库
         System.out.println("---------当前收支记录明细--------------------");
-        System.out.println("-------     收支  收支余额  收支金额  说明  ---");
+        System.out.println("-------     收支  余额  收支金额  说明  ---");
         while (rs.next()) {
             int id = rs.getInt("id");
             String shouzhi = rs.getString("shouzhi");
@@ -132,17 +132,17 @@ public class FamilyAccount {
                 break;
             case 2:
                 Scanner scanner = new Scanner(System.in);
-                System.out.print("请输入收入金额:");
+                System.out.print("请输入本次收入金额:");
                 String shouru = scanner.nextLine();
-                System.out.print("请输入说明：");
+                System.out.print("请输入本次说明：");
                 String shuoming = scanner.nextLine();
                 in(shouru, shuoming);
                 break;
             case 3:
                 Scanner scanner1 = new Scanner(System.in);
-                System.out.print("请输入支出金额:");
+                System.out.print("请输入本次支出金额:");
                 String shouru1 = scanner1.nextLine();
-                System.out.print("请输入说明：");
+                System.out.print("请输入本次说明：");
                 String shuoming1 = scanner1.nextLine();
                 out(shouru1, shuoming1);
                 break;
