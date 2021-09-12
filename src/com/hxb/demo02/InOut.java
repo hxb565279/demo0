@@ -13,7 +13,7 @@ public class InOut {
         printf_1();
     }
 
-    static Info box[] = new Info[20];
+    static Info[] box = new Info[20];
 
     private static void printf_1() {
         // TODO Auto-generated method stub
@@ -57,7 +57,6 @@ public class InOut {
         System.out.println("Input amount of money.");
         String money = sc.next();
         try {
-            int add_money = Integer.parseInt(money);
         } catch (Exception e) {
             System.out.println("Error! Agine.");
             printf_add(kind);
@@ -89,11 +88,6 @@ public class InOut {
 class Info {
     String kind;
 
-    public Info() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
     public Info(String kind, int money, int pre_money, String exp) {
         super();
         this.kind = kind;
@@ -120,10 +114,6 @@ class Info {
 
     public int getPre_money() {
         return pre_money;
-    }
-
-    public void setPre_money(int pre_money) {
-        this.pre_money = pre_money;
     }
 
     public String getExp() {
