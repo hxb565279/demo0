@@ -1,5 +1,10 @@
 package com.hxb.demo01;
-
+ /* demo0
+         *@auth 和学博
+        * hxb
+        * com.hxb.demo01
+        * @time  6:33
+        */
 public class Account {
     private int id;  //id
     private String shouzhi;  //收支
